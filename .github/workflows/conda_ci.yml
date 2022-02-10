@@ -42,7 +42,10 @@ jobs:
         python setup.py build
 
     - name: Run Tests
+      shell: bash -l {0}
       run: |
+        conda info
+        conda activate test
         flake8 --select F401, F405, E231 quantecon
         nosetests --with-coverage -a "!slow" --cover-package=quantecon
 
