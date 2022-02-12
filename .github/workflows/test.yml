@@ -42,4 +42,4 @@ jobs:
       shell: cmd
       run: |
         flake8 --select F401, F405,E231 quantecon
-        nosetests --with-coverage -a "!slow" --cover-package=quantecon
+        nosetests --exe --with-coverage -a "!slow" --cover-package=quantecon
