@@ -1,0 +1,46 @@
+name: conda-build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        environment-file: environment.yml
+        python-version: ${{ matrix.python-version }}
+        auto-activate-base: false
+
+    - name: Conda info
+      shell: bash -l {0}
+      run: |
+        conda info
+        conda list
+
+    - name: Setup QuantEcon
+      run: |
+        sudo python setup.py install
+
+    - name: Run Tests
+      shell: cmd
+      run: |
+        conda activate test
+        flake8 --select F401, F405, E231 quantecon
+        nosetests --with-coverage -a "!slow" --cover-package=quantecon

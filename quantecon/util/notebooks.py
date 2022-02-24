@@ -32,11 +32,11 @@ FOLDER = "dependencies"
 def fetch_nb_dependencies(files, repo=REPO, raw=RAW, branch=BRANCH, folder=FOLDER, overwrite=False, verbose=True):
     """
     Retrieve raw files from QuantEcon.notebooks or other Github repo
-    
+
     Parameters
     ----------
     file_list   list or dict
-                A list of files to specify a collection of filenames	
+                A list of files to specify a collection of filenames
                 A dict of dir : list(files) to specify a directory
     repo        str, optional(default=REPO)
     raw 		str, optional(default=RAW)
@@ -48,7 +48,7 @@ def fetch_nb_dependencies(files, repo=REPO, raw=RAW, branch=BRANCH, folder=FOLDE
 
     Examples
     --------
-    Consider a notebook that is dependant on a ``csv`` file to execute. If this file is 
+    Consider a notebook that is dependant on a ``csv`` file to execute. If this file is
     located in a Github repository then it can be fetched using this utility
 
     Assuming the file is at the root level in the ``master`` branch then:
@@ -58,13 +58,13 @@ def fetch_nb_dependencies(files, repo=REPO, raw=RAW, branch=BRANCH, folder=FOLDE
 
     More than one file may be requested in the list provided
 
-    >>> status = fetch_nb_dependencies(["test.csv", "data.csv"], repo="https://<github_address>") 
+    >>> status = fetch_nb_dependencies(["test.csv", "data.csv"], repo="https://<github_address>")
 
     A folder location can be added using ``folder=``
 
     >>> status = fetch_nb_dependencies("test.csv", report="https://<github_address>", folder="data")
 
-    You can also specify a specific branch using ``branch=`` keyword argument. 
+    You can also specify a specific branch using ``branch=`` keyword argument.
 
     This will download the requested file(s) to your local working directory. The default
     behaviour is **not** to overwrite a local file if it is present. This can be switched off
