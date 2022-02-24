@@ -36,7 +36,7 @@ jobs:
 
     - name: Setup QuantEcon
       run: |
-        python setup.py install
+        sudo python setup.py install
 
     - name: Run Tests
       shell: cmd
